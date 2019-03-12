@@ -8,6 +8,4 @@ app_name = 'purchases'
 router = routers.DefaultRouter()
 router.register(app_name, views.PurchaseViewSet)
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+urlpatterns = router.urls
