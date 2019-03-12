@@ -1,9 +1,8 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from .serializers import PurchaseSerializer
-from .models import Purchase
+from rest_framework.viewsets import ModelViewSet
+from purchases.serializers import PurchaseSerializer
+from purchases.models import Purchase
 
 
-class PurchaseViewSet(viewsets.ModelViewSet):
+class PurchaseViewSet(ModelViewSet):
     queryset = Purchase.objects.all().order_by('-purchase_date')
     serializer_class = PurchaseSerializer
