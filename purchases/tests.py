@@ -6,6 +6,18 @@ from http import HTTPStatus
 
 class TestPurchase(TestCase):
     _NUMBER_OF_REQUESTS = 10
+    token = ""
+
+    def setUp(self):
+        cred = {
+            'username': 'test1',
+            'password': 'django1234',
+        }
+
+        res = post('http://localhost:8000/api/login/', data=cred)
+        self.assertEqual(HTTPStatus.OK, res.status_code)
+
+        self.token = loads(res.content)['token']
 
     def test_create_purchase(self):
 
@@ -18,33 +30,57 @@ class TestPurchase(TestCase):
                 "email": f"test{i}@example.com",
                 "address": "address1",
             }
+            
+            h = {
+                'Authorization': f'Bearer {self.token}',
+            }
 
-            res = post('http://localhost:8000/purchases/', data=p)
+            res = post('http://localhost:8000/purchases/', data=p, headers=h)
             self.assertEqual(HTTPStatus.CREATED, res.status_code)
 
     def test_get_purchases(self):
 
-        res = get('http://localhost:8000/purchases/')
+        h = {
+            'Authorization': f'Bearer {self.token}',
+        }
+
+        res = get('http://localhost:8000/purchases/', headers=h)
         self.assertEqual(HTTPStatus.OK, res.status_code)
 
         results = loads(res.content).get('results', [])
         for i in results:
-            res = get(f'http://localhost:8000/purchases/{i["id"]}/')
+            h = {
+                'Authorization': f'Bearer {self.token}',
+            }
+
+            res = get(f'http://localhost:8000/purchases/{i["id"]}/', headers=h)
             self.assertEqual(HTTPStatus.OK, res.status_code)
 
     def test_delete_purchases(self):
 
-        res = get('http://localhost:8000/purchases/')
+        h = {
+            'Authorization': f'Bearer {self.token}',
+        }
+
+        res = get('http://localhost:8000/purchases/', headers=h)
         self.assertEqual(HTTPStatus.OK, res.status_code)
 
         results = loads(res.content).get('results', [])
         for i in results:
-            res = delete(f'http://localhost:8000/purchases/{i["id"]}/')
+            h = {
+                'Authorization': f'Bearer {self.token}',
+            }
+
+            res = delete(f'http://localhost:8000/purchases/{i["id"]}/', headers=h)
             self.assertEqual(HTTPStatus.NO_CONTENT, res.status_code)
 
     def test_update_purchases(self):
 
-        res = get('http://localhost:8000/purchases/')
+        h = {
+            'Authorization': f'Bearer {self.token}',
+        }
+
+        res = get('http://localhost:8000/purchases/', headers=h)
         self.assertEqual(HTTPStatus.OK, res.status_code)
 
         results = loads(res.content).get('results', [])
@@ -52,13 +88,21 @@ class TestPurchase(TestCase):
             purchase = i
             purchase["username"] = f'UpdatedUserName{i["id"]}'
 
-            res = put(f'http://localhost:8000/purchases/{i["id"]}/', data=purchase)
+            h = {
+                'Authorization': f'Bearer {self.token}',
+            }
+
+            res = put(f'http://localhost:8000/purchases/{i["id"]}/',
+                      data=purchase, headers=h)
             self.assertEqual(HTTPStatus.OK, res.status_code)
 
     def test_create_purchase_with_empty_body(self):
 
-        p = {}
-        res = post('http://localhost:8000/purchases/')
+        h = {
+            'Authorization': f'Bearer {self.token}',
+        }
+
+        res = post('http://localhost:8000/purchases/', headers=h)
         self.assertEqual(HTTPStatus.BAD_REQUEST, res.status_code)
 
         fields = [
@@ -87,7 +131,11 @@ class TestPurchase(TestCase):
             'address': 'address1',
         }
 
-        res = post('http://localhost:8000/purchases/', data=p)
+        h = {
+            'Authorization': f'Bearer {self.token}',
+        }
+
+        res = post('http://localhost:8000/purchases/', data=p, headers=h)
         self.assertEqual(HTTPStatus.BAD_REQUEST, res.status_code)
 
         result = loads(res.content)
@@ -106,7 +154,11 @@ class TestPurchase(TestCase):
             'address': 'address1',
         }
 
-        res = post('http://localhost:8000/purchases/', data=p)
+        h = {
+            'Authorization': f'Bearer {self.token}',
+        }
+
+        res = post('http://localhost:8000/purchases/', data=p, headers=h)
         self.assertEqual(HTTPStatus.BAD_REQUEST, res.status_code)
 
         result = loads(res.content)
