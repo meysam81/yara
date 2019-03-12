@@ -5,19 +5,23 @@ This repository is a project demanded by an interviewer at [Yara Corp.](https://
 
 ## Model
 The so-called DB in this project is a single table containing the following fields:
-* purchase_date: `datetime`
-* purchase_name: `string (max_length=150)`
-* user_id: `integer`
-* username: `string (max_length=150)` 
-* phone_number: `string (max_length=20)` 
-* email: `string (max_length=150)`
-* address: `text` 
+
+
+| Field Name    |  Data Type                 | Constraint       |
+|---------------|--------------------------- |------------------|
+| purchase_date |  `datetime`                |                  |
+| purchase_name |  `string`                  | max_length=150   |
+| user_id       |  `integer`                 |                  |
+| username      |  `string (max_length=150)` | max_length=150   |
+| phone_number  |  `string (max_length=20)`  | max_length=20    |
+| email         |  `string (max_length=150)` | max_length=150   |
+| address       |  `text`                    |                  |
 
 ## Prerequisite
 This project was written using `python3.7.2`, so you might as well install that before going any further.
 [Python Official Website](https://www.python.org/)
 
-You'll have to run this project in an environment, so might as well install that before going any further.
+You'll have to run this project in an environment, so I recommend installing them first hand.
 ```bash
 pip install -U pip # install the latest pip, as it is updating frequently
 pip install virtualenv
