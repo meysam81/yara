@@ -13,3 +13,6 @@ class Purchase(models.Model):
                                     ])
     email = models.CharField(max_length=150, validators=[validate_email])
     address = models.TextField()
+
+    def __str__(self):
+        return f'<{self.purchase_name}> created by <{self.username}>'
