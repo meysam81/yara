@@ -10,5 +10,4 @@ router.register(app_name, views.PurchaseViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api/', include('rest_framework.urls', namespace='rest_framework')),
 ]

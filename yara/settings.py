@@ -125,6 +125,7 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+
     'DEFAULT_THROTTLE_CLASSES': (
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle'
@@ -133,6 +134,11 @@ REST_FRAMEWORK = {
         'anon': '100/day',
         'user': '1000/day'
     },
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
 # separate db for test
