@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Purchase
+
+from purchases.models import Purchase
 
 
 class PurchaseSerializer(serializers.ModelSerializer):
