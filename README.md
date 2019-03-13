@@ -56,7 +56,7 @@ python manage.py runserver
 
 And you can login to the server using the following endpoint:
 ```bash
-localhost:8000/api/login/
+POST localhost:8000/api/login/
 ```
 
 With the body:
