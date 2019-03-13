@@ -54,5 +54,47 @@ Now you are good to go, just run the server and have fun :smiley:
 python manage.py runserver
 ```
 
+And you can login to the server using the following endpoint:
+```bash
+localhost:8000/api/login/
+```
+
+With the body:
+```json
+{
+  "username": "<username>",
+  "password": "<password>"
+}
+```
+
+Of course you're gonna have to insert some username & password in the DB so here's how you can do that. Enter the following command in your terminal:
+```bash
+python manage.py shell
+```
+
+And then:
+```python
+from django.contrib.auth.models import User
+u = User(username="<username>", password="<password>")
+u.save()
+```
+
+After logging in from the login endpoint, a token is given back to you in a json format:
+```json
+{
+  "token": "<token>"
+}
+```
+
+Include that token in every of your request's Header:
+```
+Authorization: Bearer <token>
+```
+
+And now you have access to not only reading the database, but also insert, update & deleting an object from the database.
+
+Cheers! :clinking_glasses: 
+And have fun. :100: 
+
 ## Contribute
 I don't know why you'd wanna do that, but PR's are welcomed anytime :relaxed:
