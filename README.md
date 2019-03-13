@@ -91,7 +91,14 @@ Include that token in every of your request's Header:
 Authorization: Bearer <token>
 ```
 
-And now you have access to not only reading the database, but also insert, update & deleting an object from the database.
+And now you have access to not only reading the database, but also insert, update & deleting an object from the database:
+```
+GET localhost:8000/purchases/  # anonymous access available
+GET localhost:8000/purchases/<id>/  # anonymous access available
+POST localhost:8000/purchases/  # authenticated access only
+DELETE localhost:8000/purchases/<id>/  # authenticated access only
+PUT localhost:8000/purchases/<id>/  # authenticated access only
+```
 
 Cheers! :clinking_glasses: 
 And have fun. :100: 
