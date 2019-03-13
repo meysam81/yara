@@ -53,10 +53,15 @@ Now you are good to go, just run the server and have fun :smiley:
 ```bash
 python manage.py runserver
 ```
-
+### Base URL
+This is what you should prepend to every requesting URL:
+```
+localhost:8000
+```
+### Login
 And you can login to the server using the following endpoint:
 ```bash
-POST localhost:8000/api/login/
+POST /api/login/
 ```
 
 With the body:
@@ -90,16 +95,16 @@ Include that token in every of your request's Header:
 ```
 Authorization: Bearer <token>
 ```
-
+### Service Endpoints
 And now you have access to not only reading the database, but also insert, update & deleting an object from the database:
 
 | Method  | endopint                       | permission                 |
 | --------|--------------------------------|----------------------------|
-| GET     | localhost:8000/purchases/      | anonymous access available |
-| GET     | localhost:8000/purchases/{ID}/ | anonymous access available |
-| POST    | localhost:8000/purchases/      | authenticated access only  |
-| DELETE  | localhost:8000/purchases/{ID}/ | authenticated access only  |
-| PUT     | localhost:8000/purchases/{ID}/ | authenticated access only  |
+| GET     | /purchases/                    | anonymous access available |
+| GET     | /purchases/{ID}/               | anonymous access available |
+| POST    | /purchases/                    | authenticated access only  |
+| DELETE  | /purchases/{ID}/               | authenticated access only  |
+| PUT     | /purchases/{ID}/               | authenticated access only  |
 
 Cheers! :clinking_glasses: 
 And have fun. :100: 
