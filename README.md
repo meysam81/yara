@@ -97,7 +97,7 @@ And now you have access to not only reading the database, but also insert, updat
 | --------|--------------------------------|----------------------------|
 | GET     | localhost:8000/purchases/      | anonymous access available |
 | GET     | localhost:8000/purchases/{ID}/ | anonymous access available |
-| POST    |localhost:8000/purchases/       | authenticated access only  |
+| POST    | localhost:8000/purchases/      | authenticated access only  |
 | DELETE  | localhost:8000/purchases/{ID}/ | authenticated access only  |
 | PUT     | localhost:8000/purchases/{ID}/ | authenticated access only  |
 
