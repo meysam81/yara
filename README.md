@@ -98,7 +98,7 @@ Authorization: Bearer <token>
 ### Service Endpoints
 And now you have access to not only reading the database, but also insert, update & deleting an object from the database:
 
-| Method  | endopint                       | permission                 |
+| Method  | Endpoint                       | Permission                 |
 | --------|--------------------------------|----------------------------|
 | GET     | /purchases/                    | anonymous access available |
 | GET     | /purchases/{ID}/               | anonymous access available |
