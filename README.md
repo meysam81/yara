@@ -105,6 +105,7 @@ And now you have access to not only reading the database, but also insert, updat
 | POST    | /purchases/                    | authenticated access only  |
 | DELETE  | /purchases/{ID}/               | authenticated access only  |
 | PUT     | /purchases/{ID}/               | authenticated access only  |
+| PATCH   | /purchases/{ID}/               | authenticated access only  |
 
 Cheers! :clinking_glasses: 
 And have fun. :100: 
