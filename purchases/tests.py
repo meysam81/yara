@@ -2,11 +2,23 @@ from django.test import TestCase
 from json import loads
 from requests import post, put, delete, get
 from http import HTTPStatus
+from django.db.utils import IntegrityError
+from django.contrib.auth.models import User
 
 
 class TestPurchase(TestCase):
     _NUMBER_OF_REQUESTS = 10
     token = ""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        try:
+            User.objects.create(username="test1", password="django1234")
+        except IntegrityError:
+            pass
+
+        return cls
 
     def setUp(self):
         cred = {
